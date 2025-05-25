@@ -12,7 +12,7 @@ source:
 
 build:
   noarch: python
-  script: python -m pip install . -vv
+  script: SETUPTOOLS_SCM_PRETEND_VERSION="${{ version }}" python -m pip install . -vv
   number: 0
 
 requirements:
@@ -24,7 +24,7 @@ requirements:
   run:
     - python >=${{ python_min }}
     - conda >=25.3.0
-    - py-rattler >=0.12
+    - py-rattler >=0.13.1
 
 tests:
   - python:

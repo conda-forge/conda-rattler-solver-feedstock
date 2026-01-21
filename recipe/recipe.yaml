@@ -23,8 +23,8 @@ requirements:
     - pip
   run:
     - python >=${{ python_min }}
-    - conda >=25.3.0
-    - py-rattler >=0.13.1
+    - conda >=25.5.0
+    - py-rattler >=0.20.0
 
 tests:
   - python:
@@ -33,7 +33,7 @@ tests:
       pip_check: true
       python_version: ${{ python_min }}.*
   - script:
-      - python -m conda create --dry-run python --solver=rattler
+      - python -m conda create --dry-run --solver=rattler --channel=conda-forge python
 
 about:
   homepage: https://github.com/conda-incubator/conda-rattler-solver

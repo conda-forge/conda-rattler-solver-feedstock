@@ -24,7 +24,7 @@ requirements:
   run:
     - python >=${{ python_min }}
     - conda >=25.5.0
-    - py-rattler >=0.20.0
+    - py-rattler >=0.21.0
 
 tests:
   - python:

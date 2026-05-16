@@ -3,7 +3,7 @@ About conda-rattler-solver-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/conda-rattler-solver-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/conda-incubator/conda-rattler-solver
+Home: https://github.com/conda/conda-rattler-solver
 
 Package license: BSD-3-Clause
 
@@ -13,11 +13,10 @@ Current build status
 ====================
 
 
-<table><tr><td>All platforms:</td>
+<table><tr>
+    <td>All platforms:</td>
     <td>
-      <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=25756&branchName=main">
-        <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/conda-rattler-solver-feedstock?branchName=main">
-      </a>
+      <img src="https://img.shields.io/badge/noarch-disabled-lightgrey.svg" alt="noarch disabled">
     </td>
   </tr>
 </table>

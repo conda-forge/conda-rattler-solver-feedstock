@@ -1,9 +1,8 @@
 context:
-  name: conda-rattler-solver
   version: "0.1.0"
 
 package:
-  name: ${{ name|lower }}
+  name: conda-rattler-solver
   version: ${{ version }}
 
 source:

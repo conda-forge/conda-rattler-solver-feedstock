@@ -1,5 +1,5 @@
 context:
-  version: "0.1.0"
+  version: "0.1.1"
 
 package:
   name: conda-rattler-solver
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/conda/conda-rattler-solver/archive/${{ version }}.tar.gz
-  sha256: b14a5b952bd96542c68883b6ab890a43b53890785580e730d9fc55d26c53e8d6
+  sha256: 5bb558d6d125d5312886e3d98ce592105679e37d44ec78bfb8ace8c114d78b6e
 
 build:
   noarch: python
@@ -23,7 +23,7 @@ requirements:
   run:
     - python >=${{ python_min }}
     - conda >=26.5.0
-    - py-rattler >=0.23.0,<0.24.0a0
+    - py-rattler >=0.25.0,<0.26.0a0
 
 tests:
   - python:

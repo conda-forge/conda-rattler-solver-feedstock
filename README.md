@@ -40,31 +40,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `conda-rattler-solver` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install conda-rattler-solver
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install conda-rattler-solver
 ```
 
-It is possible to list all of the versions of `conda-rattler-solver` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add conda-rattler-solver
+# for installing globally
+pixi global install conda-rattler-solver
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `conda-rattler-solver` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search conda-rattler-solver --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search conda-rattler-solver --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search conda-rattler-solver --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -76,6 +118,8 @@ mamba repoquery whoneeds conda-rattler-solver --channel conda-forge
 # List dependencies of `conda-rattler-solver`:
 mamba repoquery depends conda-rattler-solver --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge

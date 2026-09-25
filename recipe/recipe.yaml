@@ -30,7 +30,9 @@ tests:
       imports:
         - conda_rattler_solver.solver
       pip_check: true
-      python_version: ${{ python_min }}.*
+      python_version: 
+        - ${{ python_min }}.*
+        - "*"
   - script:
       - python -m conda create --dry-run --solver=rattler --channel=conda-forge python
 

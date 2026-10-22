@@ -11,6 +11,7 @@ source:
   url: https://pypi.org/packages/source/c/conda-rattler-solver/conda_rattler_solver-${{ version }}.tar.gz
   sha256: 00e50ac40d1b9ac4e98fb08ebaa20080db6e7dcbfb4e5a6748cf385dfe6df60e
   patches:
+    # remove after release with https://github.com/conda/conda-rattler-solver/pull/180
     - 0000-relax-py-rattler.patch
 
 build:
@@ -24,8 +25,8 @@ build:
 
 requirements:
   host:
-    - hatch-vcs
-    - hatchling
+    - hatch-vcs >=0.2.0
+    - hatchling >=1.12.2
     - pip
     - python ${{ python_min }}.*
   run:
@@ -33,7 +34,9 @@ requirements:
     - python >=${{ python_min }}
   run_constraints:
     # commented out in `pyproject.toml#/project/requirements`
-    - conda >=${{ conda_min }}
+    - conda >=26.7.0
+    # force inclusion of https://github.com/conda-forge/py-rattler-feedstock/pull/108
+    - py-rattler >=0.27.1 *_1
 
 tests:
   - package_contents:

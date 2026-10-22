@@ -6,39 +6,49 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://github.com/conda/conda-rattler-solver/archive/${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/c/conda-rattler-solver/conda_rattler_solver-${{ version }}.tar.gz
   sha256: 3276b7a8cd63dfa64822c75e99e318b10f7e5a02ffb6c26cf5ab7db2b470562e
 
 build:
+  number: 1
   noarch: python
-  script: SETUPTOOLS_SCM_PRETEND_VERSION="${{ version }}" python -m pip install . -vv
-  number: 0
+  script:
+    env:
+      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
+    content:
+      - python -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
 
 requirements:
   host:
-    - python ${{ python_min }}.*
-    - hatchling
     - hatch-vcs
+    - hatchling
     - pip
+    - python ${{ python_min }}.*
   run:
-    - python >=${{ python_min }}
     - conda >=26.7.0
-    - py-rattler >=0.26.0,<0.27.0a0
+    - py-rattler >=0.26.0,<0.28.0a0
+    - python >=${{ python_min }}
 
 tests:
+  - package_contents:
+      strict: true
+      site_packages:
+        - conda_rattler_solver/**
+        - conda_rattler_solver-${{ version }}.dist-info/**
   - python:
       imports:
         - conda_rattler_solver.solver
       pip_check: true
-      python_version: 
+      python_version:
         - ${{ python_min }}.*
         - "*"
   - script:
       - python -m conda create --dry-run --solver=rattler --channel=conda-forge python
 
 about:
-  homepage: https://github.com/conda/conda-rattler-solver
-  summary: 'The fast pixi solver, now in conda'
+  homepage: https://pypi.org/project/conda-rattler-solver
+  repository: https://github.com/conda/conda-rattler-solver
+  summary: The fast pixi solver, now in conda
   license: BSD-3-Clause
   license_file: LICENSE
 

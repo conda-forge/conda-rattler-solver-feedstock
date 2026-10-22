@@ -9,7 +9,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/c/conda-rattler-solver/conda_rattler_solver-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/c/conda-rattler-solver/conda_rattler_solver-${{ version }}.tar.gz
   sha256: 00e50ac40d1b9ac4e98fb08ebaa20080db6e7dcbfb4e5a6748cf385dfe6df60e
   patches:
     # remove after release with https://github.com/conda/conda-rattler-solver/pull/180

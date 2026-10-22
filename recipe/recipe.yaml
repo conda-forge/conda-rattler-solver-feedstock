@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/c/conda-rattler-solver/conda_rattler_solver-${{ version }}.tar.gz
-  sha256: 3276b7a8cd63dfa64822c75e99e318b10f7e5a02ffb6c26cf5ab7db2b470562e
+  sha256: 00e50ac40d1b9ac4e98fb08ebaa20080db6e7dcbfb4e5a6748cf385dfe6df60e
 
 build:
   number: 1

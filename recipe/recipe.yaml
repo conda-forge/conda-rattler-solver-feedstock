@@ -1,5 +1,7 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
 context:
   version: "0.2.0"
+  python_check_max: "3.15"
 
 package:
   name: conda-rattler-solver
@@ -8,6 +10,8 @@ package:
 source:
   url: https://pypi.org/packages/source/c/conda-rattler-solver/conda_rattler_solver-${{ version }}.tar.gz
   sha256: 00e50ac40d1b9ac4e98fb08ebaa20080db6e7dcbfb4e5a6748cf385dfe6df60e
+  patches:
+    - 0000-relax-py-rattler.patch
 
 build:
   number: 1
@@ -25,9 +29,11 @@ requirements:
     - pip
     - python ${{ python_min }}.*
   run:
-    - conda >=26.7.0
     - py-rattler >=0.26.0,<0.28.0a0
     - python >=${{ python_min }}
+  run_constraints:
+    # commented out in `pyproject.toml#/project/requirements`
+    - conda >=${{ conda_min }}
 
 tests:
   - package_contents:
@@ -36,13 +42,16 @@ tests:
         - conda_rattler_solver/**
         - conda_rattler_solver-${{ version }}.dist-info/**
   - python:
-      imports:
-        - conda_rattler_solver.solver
+      imports: conda_rattler_solver
       pip_check: true
       python_version:
         - ${{ python_min }}.*
-        - "*"
-  - script:
+        - ${{ python_check_max }}.*
+  - requirements:
+      run:
+        - conda
+        - python ${{ python_min }}.*
+    script:
       - python -m conda create --dry-run --solver=rattler --channel=conda-forge python
 
 about:

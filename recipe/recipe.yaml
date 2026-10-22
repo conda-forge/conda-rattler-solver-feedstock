@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
 context:
   version: "0.2.0"
+  # check a specific "latest" python instead of `*` (e.g. any old python)
   python_check_max: "3.15"
 
 package:

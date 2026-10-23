@@ -36,8 +36,6 @@ requirements:
   run_constraints:
     # commented out in `pyproject.toml#/project/requirements`
     - conda >=26.7.0
-    # force inclusion of https://github.com/conda-forge/py-rattler-feedstock/pull/108
-    - py-rattler >=0.27.1 *_1
 
 tests:
   - package_contents:
@@ -55,6 +53,9 @@ tests:
       run:
         - conda
         - python ${{ python_min }}.*
+        # verify solveability against a known-good version, even if not used
+        # see https://github.com/conda-forge/py-rattler-feedstock/pull/108
+        - py-rattler >=0.27.1 *_1
     script:
       - python -m conda create --dry-run --solver=rattler --channel=conda-forge python
 

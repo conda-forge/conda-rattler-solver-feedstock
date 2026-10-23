@@ -1,8 +1,20 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
 context:
   version: "0.2.0"
-  # check a specific "latest" python instead of `*` (e.g. any old python)
+  # used in constraints and tests, but commented out in `pyproject.toml#/project/requirements`
+  conda_min: "26.7.0"
+  # used to check a specific "latest" python for solve instead of `*` (e.g. any old python)
   python_check_max: "3.15"
+  # used to check a specific "latest" python for test (`conda` not yet available for 3.15)
+  python_test_max: "3.14"
+  # used to verify solveability against a known-good version, even if not used
+  # see https://github.com/conda-forge/py-rattler-feedstock/pull/108
+  known_good_py_rattler: py-rattler >=0.27.1 *_1
+  # build up a test to run in a manual matrix
+  pip_check: python -m pip check
+  import_check: python -c "import conda_rattler_solver.solver"
+  solve_check: python -m conda create --dry-run --solver=rattler --channel=conda-forge python
+  smoke_test: ${{ pip_check }} && ${{ import_check }} && ${{ solve_check }}
 
 package:
   name: conda-rattler-solver
@@ -34,8 +46,7 @@ requirements:
     - py-rattler >=0.26.0,<0.28.0a0
     - python >=${{ python_min }}
   run_constraints:
-    # commented out in `pyproject.toml#/project/requirements`
-    - conda >=26.7.0
+    - conda >=${{ conda_min }}
 
 tests:
   - package_contents:
@@ -51,13 +62,18 @@ tests:
         - ${{ python_check_max }}.*
   - requirements:
       run:
-        - conda
+        - conda ${{ conda_min }}.*
+        - pip
         - python ${{ python_min }}.*
-        # verify solveability against a known-good version, even if not used
-        # see https://github.com/conda-forge/py-rattler-feedstock/pull/108
-        - py-rattler >=0.27.1 *_1
-    script:
-      - python -m conda create --dry-run --solver=rattler --channel=conda-forge python
+        - ${{ known_good_py_rattler }}
+    script: ${{ smoke_test }}
+  - requirements:
+      run:
+        - conda
+        - pip
+        - python ${{ python_test_max }}.*
+        - ${{ known_good_py_rattler }}
+    script: ${{ smoke_test }}
 
 about:
   homepage: https://pypi.org/project/conda-rattler-solver

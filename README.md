@@ -7,7 +7,7 @@ Home: https://github.com/conda/conda-rattler-solver
 
 Package license: BSD-3-Clause
 
-Summary: The fast pixi solver, now in conda
+Summary: The fast, Rust-based solver for conda
 
 Current build status
 ====================

@@ -18,7 +18,7 @@ requirements:
   host:
     - python ${{ python_min }}.*
     - hatchling >=0.12.2
-    - hatch-vcs
+    - hatch-vcs >0.2.0
     - pip
   run:
     - python >=${{ python_min }}

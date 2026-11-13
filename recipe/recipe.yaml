@@ -1,5 +1,5 @@
 context:
-  version: "26.10.2"
+  version: "26.11.0"
 
 package:
   name: conda-rattler-solver
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/conda/conda-rattler-solver/archive/${{ version }}.tar.gz
-  sha256: d867afc4a9662855a14ececde71e9e2a79ae1a9870711ea7223e80ce5fdd525c
+  sha256: 4e1c62b6ddf164f3b7424321e1af2a70290e0ff8af2dfbb88bfedd0f0d57e536
 
 build:
   noarch: python
@@ -17,8 +17,8 @@ build:
 requirements:
   host:
     - python ${{ python_min }}.*
-    - hatchling
-    - hatch-vcs
+    - hatchling >=0.12.2
+    - hatch-vcs >0.2.0
     - pip
   run:
     - python >=${{ python_min }}
